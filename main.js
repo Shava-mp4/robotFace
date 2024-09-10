@@ -7,8 +7,13 @@ cnv.width = 600;
 cnv.height = 600;
 
 // Rectangle Behind Head for Ears
+
+// rect(80, 260, 460, 80);
+
+//new ears
 ctx.fillStyle = "rgb(100, 100, 100)";
-rect(80, 260, 460, 80);
+semiCircle(140, 260, 100, "fill");
+semiCircle(460, 260, 100, "fill");
 
 // Filled Triangle for Hair
 triangle(180, 80, 140, 100, 220, 100, "fill");
@@ -77,9 +82,17 @@ line(350, 160, 450, 180, "stroke");
 triangle(300, 280, 320, 320, 280, 320, "stroke");
 
 // filled triangles for bowtie
-ctx.strokeStyle = "rgb(235, 235, 235)";
+ctx.fillStyle = "rgb(217, 217, 217)";
+triangle(300, 500, 220, 530, 220, 470, "fill"); //left
+triangle(300, 500, 380, 530, 380, 470, "fill"); //right
 
-//filled circle for bowtie
+//filled rect for bowtie
+rect(285, 490, 30, 20, "fill");
+
+//spindly mustahce?
+ctx.lineWidth = 5;
+curve(290, 330, 180, 430, 170, 350); //left
+curve(310, 330, 420, 430, 430, 350); //right
 
 function circle(x, y, r, type) {
   ctx.beginPath();
@@ -115,4 +128,23 @@ function line(x1, y1, x2, y2) {
   ctx.moveTo(x1, y1);
   ctx.lineTo(x2, y2);
   ctx.stroke();
+}
+
+function curve(x1, y1, cx1, cy1, x2, y2) {
+  ctx.beginPath();
+  ctx.moveTo(x1, y1);
+  ctx.quadraticCurveTo(cx1, cy1, x2, y2);
+  ctx.stroke();
+}
+
+function semiCircle(x, y, r, type) {
+  ctx.beginPath();
+  ctx.arc(x, y, r, 0, Math.PI); //end angle changed to pi and not 2 * pi
+  ctx.stroke();
+
+  if (type == "stroke") {
+    ctx.stroke();
+  } else if (type == "fill") {
+    ctx.fill();
+  }
 }
